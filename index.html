@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <style>
+
+    /* Add any desired CSS styles here */
+
+  </style>
+
+</head>
+
+<body>
+
+  <form id="download-form">
+
+    <label for="url">Enter a URL for the file to download:</label>
+
+    <input type="url" id="url">
+
+    <br>
+
+    <button type="submit">Download</button>
+
+  </form>
+
+  <a id="download-link" download>Download</a>
+
+
+
+  <script>
+
+    const downloadForm = document.getElementById("download-form");
+
+    const downloadLink = document.getElementById("download-link");
+
+    const urlInput = document.getElementById("url");
+
+
+
+    downloadForm.addEventListener("submit", async (event) => {
+
+      event.preventDefault();
+
+
+
+      const response = await fetch(urlInput.value);
+
+      const blob = await response.blob();
+
+      const objectUrl = URL.createObjectURL(blob);
+
+
+
+      downloadLink.href = objectUrl;
+
+      downloadLink.click();
+
+    });
+
+  </script>
+
+</body>
+
+</html>
